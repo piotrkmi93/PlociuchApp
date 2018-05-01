@@ -1,0 +1,51 @@
+page-conversations {
+
+  button.add{
+    display: block;
+    width: 15vw;
+    height: 15vw;
+    position: fixed;
+    background: #32db64;
+    color: #fff;
+    border-radius: 50%;
+    right: 5vw;
+    bottom: 5vw;
+    font-size: 50px;
+    font-weight: bold;
+  }
+
+  button.log-out-btn{
+    transform: rotateY(180deg);
+  }
+
+  ion-list{
+    padding-bottom: 15vw;
+  }
+
+  ion-item{
+
+    h2 > small,
+    p > ion-badge{
+      float: right;
+    }
+
+    p > ion-badge{
+      display: none;
+    }
+
+    &.unread{
+
+      h2 > small,
+      p {
+        font-weight: bold;
+      }
+
+      p > ion-badge{
+        display: block;
+      }
+
+    }
+
+  }
+
+}

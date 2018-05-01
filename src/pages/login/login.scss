@@ -1,0 +1,40 @@
+page-login {
+
+  .item-form {
+    font-size: 2rem;
+  }
+
+  ion-item{
+    border: none !important;
+    .item-inner{
+      border: none !important;
+    }
+  }
+
+}
+
+.errToast {
+  .toast-wrapper{
+    background-color: #f53d3d;
+    .toast-container{
+      .toast-message {
+        color: white;
+        font-weight: bold;
+        border-right: 1px solid white;
+      }
+    }
+  }
+}
+
+.sucToast {
+  .toast-wrapper{
+    background-color: #32db64;
+    .toast-container{
+      .toast-message {
+        color: white;
+        font-weight: bold;
+        border-right: 1px solid white;
+      }
+    }
+  }
+}
