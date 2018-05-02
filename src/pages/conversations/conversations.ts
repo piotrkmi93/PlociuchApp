@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Socket} from "ng-socket-io";
+import {SearchPage} from "../search/search";
 
 /**
  * Generated class for the ConversationsPage page.
@@ -16,32 +17,51 @@ import {Socket} from "ng-socket-io";
 })
 export class ConversationsPage {
 
+  private token = localStorage.getItem('token');
   public contributors = [];
 
   constructor(public socket: Socket,
               public navCtrl: NavController,
               public navParams: NavParams) {
-    socket.connect();
-  }
 
-  ionViewDidLoad() {
-    for(let i=0; i<10; ++i)
-    this.contributors.push({
-      login: 'Marylson',
-      unreadMessages: i*12,
-      lastMessage: {
-        text: 'Hello!',
-        date: 1525184185414 + i*745836
-      }
+    if(typeof this.token === 'undefined'){
+      this.logout(false);
+    } else {
+      socket.connect();
+      socket.emit('attach-user', this.token);
+    }
+
+    socket.on('invalid-token', () => {
+      this.logout(false);
     });
 
-    this.contributors.sort((a,b) => {
-      if(a.lastMessage.date < b.lastMessage.date) return 1;
-      if(a.lastMessage.date > b.lastMessage.date) return -1;
-      return 0;
-    })
+    socket.on('contributors', data => {
+      console.log('contributors');
+      console.log(data);
+      this.contributors = data;
+    });
   }
 
+  public ionViewDidLoad() {
+    this.socket.emit('contributors', {token: this.token});
 
+
+    // this.contributors.sort((a,b) => {
+    //   if(a.lastMessage.date < b.lastMessage.date) return 1;
+    //   if(a.lastMessage.date > b.lastMessage.date) return -1;
+    //   return 0;
+    // });
+  }
+
+  public logout(send = true)
+  {
+    // todo
+    console.log('logout');
+  }
+
+  public search()
+  {
+    this.navCtrl.push(SearchPage);
+  }
 
 }

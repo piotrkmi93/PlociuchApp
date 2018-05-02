@@ -7,12 +7,35 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>search</ion-title>
+    <ion-title>Find contributors</ion-title>
   </ion-navbar>
+
+  <ion-searchbar
+    [(ngModel)]="phrase"
+    [showCancelButton]="true"
+    (ionInput)="onInput($event)"
+    [animated]="true"
+    (ionCancel)="onCancel($event)">
+  </ion-searchbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+
+  <ion-list>
+
+    <ion-list-header>
+      {{ results.length }} contributors found
+    </ion-list-header>
+
+    <ion-item *ngFor="let con of results" (click)="add(con)" [ngClass]="{'in_contributors': con.in_contributors}">
+      <ion-avatar item-start>
+        <img src="assets/imgs/avatar.jpg">
+      </ion-avatar>
+      <h2>{{ con.login }}</h2>
+      <ion-icon name="chatboxes" item-end></ion-icon>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

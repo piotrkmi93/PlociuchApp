@@ -15,7 +15,7 @@
       </button>
     </ion-buttons>
     <ion-buttons end>
-      <button ion-button icon-only (click)="add()">
+      <button ion-button icon-only (click)="search()">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
@@ -37,8 +37,12 @@
       <ion-avatar item-start>
         <img src="assets/imgs/avatar.jpg">
       </ion-avatar>
-      <h2>{{ con.login }} <small>{{ con.lastMessage.date|date:'HH:mm dd/MM/yyyy' }}</small></h2>
-      <p>{{ con.lastMessage.text }}<ion-badge>{{ con.unreadMessages }}</ion-badge></p>
+      <h2>{{ con.user.login }} <small *ngIf="con.lastMessage.date">{{ con.lastMessage.date|date:'HH:mm dd/MM/yyyy' }}</small></h2>
+      <p>
+        <span *ngIf="con.lastMessage.text">{{ con.lastMessage.text }}</span>
+        <span *ngIf="!con.lastMessage.text"><i>No messages</i></span>
+        <ion-badge *ngIf="con.unreadMessages">{{ con.unreadMessages }}</ion-badge>
+      </p>
     </ion-item>
   </ion-list>
 

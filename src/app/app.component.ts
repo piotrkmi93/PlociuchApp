@@ -4,8 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {ConversationsPage} from "../pages/conversations/conversations";
 import {LoginPage} from "../pages/login/login";
-// import {Socket} from "ng-socket-io";
-// socket: Socket
+
 
 @Component({
   templateUrl: 'app.html'
