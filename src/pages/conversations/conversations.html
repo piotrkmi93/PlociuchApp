@@ -33,7 +33,7 @@
       Contributors
     </ion-list-header>
 
-    <ion-item *ngFor="let con of contributors" [ngClass]="{'unread': con.unreadMessages}">
+    <ion-item *ngFor="let con of contributors" [ngClass]="{'unread': con.unreadMessages}" (click)="conversation(con)">
       <ion-avatar item-start>
         <img src="assets/imgs/avatar.jpg">
       </ion-avatar>

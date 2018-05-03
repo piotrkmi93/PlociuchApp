@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Socket} from "ng-socket-io";
 import {SearchPage} from "../search/search";
+import {ConversationPage} from "../conversation/conversation";
 
 /**
  * Generated class for the ConversationsPage page.
@@ -62,6 +63,12 @@ export class ConversationsPage {
   public search()
   {
     this.navCtrl.push(SearchPage);
+  }
+
+  public conversation(con)
+  {
+    console.log(con);
+    this.navCtrl.push(ConversationPage, {con});
   }
 
 }

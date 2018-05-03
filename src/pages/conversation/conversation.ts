@@ -15,7 +15,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ConversationPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public conversation = undefined;
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams) {
+
+    this.conversation = this.navParams.get('con')
+
   }
 
   ionViewDidLoad() {
@@ -23,3 +29,4 @@ export class ConversationPage {
   }
 
 }
+
