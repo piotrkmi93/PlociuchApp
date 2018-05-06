@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{ conversation.user.login }}</ion-title>
+    <ion-title>{{ login }} - {{ conversation.user.login }} ({{ messages.length }})</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,15 +15,26 @@
 
 <ion-content>
 
+  <div class="message"
+       [ngClass]="{'contributor': message.user === conversation.user.id}"
+       (click)="showDate(message)"
+       *ngFor="let message of messages">
+    <p class="message-text">{{ message.text }}</p>
+    <p class="message-date"
+       [ngClass]="{'show-date': message.showDate}">{{ message.created|date:'HH:mm dd/MM/yyyy' }}</p>
+  </div>
+
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
     <ion-row>
       <ion-col col-10>
-        <ion-input type="text" placeholder="Add a message..."></ion-input>
+        <ion-input [(ngModel)]="message"
+                   type="text"
+                   placeholder="Write a message..."></ion-input>
       </ion-col>
-      <ion-col col-2>
+      <ion-col col-2 class="send-btn" [ngClass]="{'can-send': message.length}" (click)="send()">
         <ion-icon name="paper-plane"></ion-icon>
       </ion-col>
     </ion-row>

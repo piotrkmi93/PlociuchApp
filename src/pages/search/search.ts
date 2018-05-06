@@ -22,21 +22,30 @@ export class SearchPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public socket: Socket) {
+              public socket: Socket) {}
 
+  ionViewDidLoad()
+  {
     this.socket.on('search-result', data => {
       console.log(data);
       this.results = data;
     });
 
     this.socket.on('add-contributor-success', data => {
-      console.log('add-contributor-success');
+      alert('Contributor added successfully');
+      this.navCtrl.pop();
     });
 
     this.socket.on('add-contributor-failed', data => {
-      console.log('add-contributor-failed');
+      alert('Contributor adding failed');
     });
+  }
 
+  ionViewCanLeave()
+  {
+    this.socket.removeListener('search-result');
+    this.socket.removeListener('add-contributor-success');
+    this.socket.removeListener('add-contributor-failed');
   }
 
   public onInput()
@@ -62,10 +71,7 @@ export class SearchPage {
         token: localStorage.getItem('token'),
         userId: contributor.id
       });
-    } else {
-      // todo go to conversation
     }
-    console.log(contributor);
   }
 
 }

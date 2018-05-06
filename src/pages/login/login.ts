@@ -76,6 +76,7 @@ export class LoginPage
   private success(data)
   {
     localStorage.setItem('token', data.token);
+    localStorage.setItem('login', this.user.login);
 
     this.navCtrl.setRoot(ConversationsPage);
 

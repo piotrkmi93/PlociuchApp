@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Plociuch</ion-title>
+    <ion-title>You: {{login}}</ion-title>
 
     <ion-buttons start>
       <button class="log-out-btn" ion-button icon-only (click)="logout()">
@@ -30,18 +30,17 @@
   <ion-list>
 
     <ion-list-header>
-      Contributors
+      {{login}}'s Contributors
     </ion-list-header>
 
     <ion-item *ngFor="let con of contributors" [ngClass]="{'unread': con.unreadMessages}" (click)="conversation(con)">
       <ion-avatar item-start>
         <img src="assets/imgs/avatar.jpg">
       </ion-avatar>
-      <h2>{{ con.user.login }} <small *ngIf="con.lastMessage.date">{{ con.lastMessage.date|date:'HH:mm dd/MM/yyyy' }}</small></h2>
+      <h2>{{ con.user.login }} <small *ngIf="con.lastMessage.created">{{ con.lastMessage.created|date:'HH:mm dd/MM/yyyy' }}</small></h2>
       <p>
         <span *ngIf="con.lastMessage.text">{{ con.lastMessage.text }}</span>
         <span *ngIf="!con.lastMessage.text"><i>No messages</i></span>
-        <ion-badge *ngIf="con.unreadMessages">{{ con.unreadMessages }}</ion-badge>
       </p>
     </ion-item>
   </ion-list>
